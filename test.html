@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Votre Entreprise - Vente de pellets de bois de haute qualité pour le chauffage. Découvrez notre sélection de pellets premium et passez votre commande dès aujourd'hui.">
+    <title>Votre Entreprise - Vente de Pellets</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #383636;
+            padding: 1em;
+            text-align: center;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        footer {
+            background-color: #4a90e2;
+            /* Bleu */
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #fff
+                /* Bleu */
+        }
+
+        a {
+            color: #008cba;
+            /* Bleu foncé */
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        body,
+        header,
+        footer {
+            font-family: 'Georgia', serif;
+        }
+
+        /* Animation au défilement */
+        .animate-fade.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Formulaire de contact */
+        form {
+            display: grid;
+            grid-gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #6e540d;
+            /* Bleu */
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #6e540d;
+            /* Bleu foncé */
+        }
+
+        /* Carte Google Maps */
+        #google-map {
+            height: 300px;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Votre Entreprise - Vente de Pellets</h1>
+    </header>
+
+    <section class="animate-fade">
+        <h2>Nos Produits</h2>
+        <p>Explorez notre gamme de pellets de qualité supérieure :</p>
+        <ul>
+            <li>Pellets Premium</li>
+            <li>Pellets Standard</li>
+            <li>Pellets Certifiés</li>
+        </ul>
+    </section>
+
+    <section class="animate-fade">
+        <h2>Bienvenue chez Nous !</h2>
+        <p>Nous sommes spécialisés dans la vente de pellets de bois de haute qualité pour le chauffage.</p>
+        <p>Consultez notre sélection de pellets et passez votre commande dès aujourd'hui !</p>
+    </section>
+
+    <section class="animate-fade">
+        <h2>Contactez-nous</h2>
+        <p>Pour toute question ou commande, n'hésitez pas à nous contacter :</p>
+        <form action="mailto:contact@votreentreprise.com" method="post" enctype="text/plain">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <input type="submit" value="Envoyer">
+        </form>
+    </section>
+
+    <section class="animate-fade">
+        <h2>Lieu de Livraison</h2>
+        <div id="google-map" style="height: 300px; width: 100%;"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Votre Entreprise - Vente de Pellets</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_API_KEY&callback=initMap" async defer></script>
+    <script>
+        // Animation au défilement
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                $('.animate-fade').each(function () {
+                    var position = $(this).offset().top;
+                    var scroll = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+                    if (scroll > position - windowHeight + 100) {
+                        $(this).addClass('show');
+                    }
+                });
+            });
+        });
+
+        // Initialiser la carte Google Maps
+        function initMap() {
+            var myLatLng = { lat: 48.8566, lng: 2.3522 }; // Coordonnées de Paris, à remplacer par les coordonnées de votre lieu de livraison
+            var map = new google.maps.Map(document.getElementById('google-map'), {
+                zoom: 14,
+                center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Lieu de Livraison'
+            });
+        }
+    </script>
+</body>
+
+</html>
